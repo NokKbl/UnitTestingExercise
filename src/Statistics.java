@@ -3,6 +3,7 @@ import java.util.Arrays;
 /**
  * Methods for computing some common statistics,
  * such as average, variance, and correlation.
+ * @author Hayato Kawai
  */
 public class Statistics {
 
@@ -13,6 +14,7 @@ public class Statistics {
 	 */
 	public static double average(double[] x) {
 		// Some fun: sum using a Stream instead of a loop.
+		if(x.length == 0) return 0 ;
 		double sum = Arrays.stream(x).sum();
 		return sum/x.length;
 	}
@@ -26,8 +28,15 @@ public class Statistics {
 	 * @throws IllegalArgumentException if x is empty
 	 */
 	public static double variance(double[] x) {
-		//TODO write the code
-		return 0;
+		int range = x.length;
+		if(range == 0 ) throw new IllegalArgumentException () ;
+		
+		double mean = average(x);
+		
+		for(int i = 0 ; i < range ; i++) {
+			x[i] = Math.pow((x[i] - mean ) , 2);
+		}
+		return average(x);
 	}
 	
 	/**
@@ -49,8 +58,20 @@ public class Statistics {
 	 * @throws IllegalArgumentException if arrays are not same length or length is 0.
 	 */
 	public static double covariance(double[] x, double[] y) {
-		//TODO write the code
-		return 0;
+		int limitX = x.length;
+		int limitY = y.length;
+		if ( limitX != limitY || limitX == 0 || limitY == 0) throw new IllegalArgumentException() ;
+		
+		double [] cov = new double [limitX];
+		double avgX = average(x) ;
+		double avgY = average(y) ;
+		
+		for( int i = 0 ; i< limitX ; i++) {
+			cov[i] = ( x[i] - avgX ) * ( y[i] - avgY) ;
+		}
+		
+		
+		return average(cov);
 	}
 	
 }

@@ -3,6 +3,12 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import jdk.nashorn.internal.ir.ThrowNode;
+/**
+ * JUnit test for Statistics's class
+ * @author Hayato Kawai
+ *
+ */
 public class StatisticsTest {
 	/** A small tolerance for floating point round-off (precision) error. */
 	static final double TOL = 1.0E-6;
@@ -31,11 +37,40 @@ public class StatisticsTest {
 		assertEquals( avg, Statistics.average(x), TOL);
 	}
 	
-	//TODO add test cases:
-	//1. slightly illegal case. What if array is empty?
-	//2. extrame case: very large array or very different values
+	@Test
+	public void testVariance() {
+		double[] x = { 27 , 35.5 , 1 , 31 };
+		double[] y = { 1, 2, 3, 5 };
+		assertEquals( 179.671875, Statistics.variance(x), TOL);
+		assertEquals( 2.1875 , Statistics.variance(y), TOL);
+	}
 	
-	//TODO add test for variance.
-	// What are test cases?
+	@Test
+	public void testCovariance() {
+		double[] x = { 5, 20, 40, 80, 100 };
+		double[] y = { 10, 24, 33, 54, 10 };
+		assertEquals( 150.2, Statistics.covariance(x,y), TOL);
+		
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testVarianceNull () {
+		double [] x = {} ;
+		Statistics.variance(x);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testCovarianceNull () {
+		double [] x = {} ;
+		double [] y = { 1 , 2 ,3 } ;
+		Statistics.covariance(x, y);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testCovarianNotSameLength () {
+		double [] x = { 1, 2 } ;
+		double [] y = { 1, 2 ,3 } ;
+		Statistics.covariance(x, y);
+	}
 
 }
