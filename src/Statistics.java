@@ -65,9 +65,10 @@ public class Statistics {
 		double avgX = average(x) ;
 		double avgY = average(y) ;
 		for( int i = 0 ; i< limitX ; i++) {
-			cov[i] = ( x[i] - avgX ) * ( y[i] - avgY) ;
+			cov[i] = x[i]*y[i];
 		}
-		return average(cov);
+		double sum = Arrays.stream(cov).sum();
+		return sum/ limitX - (avgX*avgY);
 	}
 	
 }
