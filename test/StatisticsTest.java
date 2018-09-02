@@ -1,9 +1,6 @@
 import static org.junit.Assert.*;
 
-import org.junit.Before;
 import org.junit.Test;
-
-import jdk.nashorn.internal.ir.ThrowNode;
 /**
  * JUnit test for Statistics's class
  * @author Hayato Kawai
@@ -16,8 +13,8 @@ public class StatisticsTest {
 	@Test
 	public void testAverageTinyArray() {
 		double[] x = { 123.01 };
-		assertEquals( x[0], Statistics.average(x), TOL);
 		double[] y = { 123.01, 123.02 };
+		assertEquals( x[0], Statistics.average(x), TOL);
 		assertEquals( 123.015, Statistics.average(y), TOL);
 	}
 	

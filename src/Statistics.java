@@ -14,9 +14,10 @@ public class Statistics {
 	 */
 	public static double average(double[] x) {
 		// Some fun: sum using a Stream instead of a loop.
-		if(x.length == 0) return 0 ;
+		int len = x.length ;
+		if( len == 0) return 0 ;
 		double sum = Arrays.stream(x).sum();
-		return sum/x.length;
+		return sum/len;
 	}
 	
 	/**
@@ -29,10 +30,8 @@ public class Statistics {
 	 */
 	public static double variance(double[] x) {
 		int range = x.length;
-		if(range == 0 ) throw new IllegalArgumentException () ;
-		
+		if(range == 0 ) throw new IllegalArgumentException ("Array must not be null") ;
 		double mean = average(x);
-		
 		for(int i = 0 ; i < range ; i++) {
 			x[i] = Math.pow((x[i] - mean ) , 2);
 		}
@@ -60,17 +59,14 @@ public class Statistics {
 	public static double covariance(double[] x, double[] y) {
 		int limitX = x.length;
 		int limitY = y.length;
-		if ( limitX != limitY || limitX == 0 || limitY == 0) throw new IllegalArgumentException() ;
-		
+		if ( limitX == 0 || limitY == 0) throw new IllegalArgumentException("Array must not be null") ;
+		if ( limitX != limitY ) throw new IllegalArgumentException("Both array should have same length") ;
 		double [] cov = new double [limitX];
 		double avgX = average(x) ;
 		double avgY = average(y) ;
-		
 		for( int i = 0 ; i< limitX ; i++) {
 			cov[i] = ( x[i] - avgX ) * ( y[i] - avgY) ;
 		}
-		
-		
 		return average(cov);
 	}
 	
