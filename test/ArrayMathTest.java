@@ -6,6 +6,7 @@ import org.junit.Test;
 
 /**
  * Test methods in the ArrayMath class.
+ * @author Kunyaruk Katebunlu
  */
 public class ArrayMathTest {
 	/** A small tolerance for floating point round-off (precision) error. */
@@ -26,9 +27,40 @@ public class ArrayMathTest {
 		assertEquals( 0.0, ArrayMath.dotProduct(x, y), TOL);
 	}
 	
-	//TODO Add at least one test for the "typical" case: vectors larger than 1.
-	// Please don't copy my tests. You don't need random numbers (not a good idea
-	// because test results may not be reproducable).
+	@Test
+	public void testDotProductLargeVectors() {
+		// vector size 2
+		double[] x = new double[] {12.4, 3};
+		double[] y = new double[] {4, 6};
+		double expected = 67.6;
+		assertEquals( expected, ArrayMath.dotProduct(x, y), TOL);
+		assertEquals( expected, ArrayMath.dotProduct(y, x), TOL);
+		
+		x = new double[] {32, -8};
+		y = new double[] {-3.4, 0};
+		expected = -108.8;
+		assertEquals( expected, ArrayMath.dotProduct(x, y), TOL);
+		assertEquals( expected, ArrayMath.dotProduct(y, x), TOL);
+		
+		x = new double[] {1, Double.MIN_VALUE};
+		y = new double[] {Double.MAX_VALUE, 1};
+		expected = Double.MAX_VALUE - Double.MIN_VALUE;
+		assertEquals( expected, ArrayMath.dotProduct(x, y), TOL);
+		assertEquals( expected, ArrayMath.dotProduct(y, x), TOL);
+		
+		// vector size 3
+		x = new double[] {12, 14.5, 56.3};
+		y = new double[] {3, 0, 2.74};
+		expected = 190.262;
+		assertEquals( expected, ArrayMath.dotProduct(x, y), TOL);
+		assertEquals( expected, ArrayMath.dotProduct(y, x), TOL);
+		
+		x = new double[] {-21, 12.7, 54.9};
+		y = new double[] {2, 8, -2.74};
+		expected = -90.826;
+		assertEquals( expected, ArrayMath.dotProduct(x, y), TOL);
+		assertEquals( expected, ArrayMath.dotProduct(y, x), TOL);
+	}
 
 	@Test
 	public void testDotProductHugeVectors() {
