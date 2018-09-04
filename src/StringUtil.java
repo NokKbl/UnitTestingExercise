@@ -12,10 +12,11 @@ public class StringUtil {
 	public static int indexOf(String arg, String[] array) {
 		int index = -1;
 		int arraylen = array.length;
-		for(int k=0; k<arraylen; k++) {
+		for (int k = 0; k < arraylen; k++) {
 			if (array[k].equals(arg)) {
-			index = k;
-			break;}	
+				index = k;
+				break;
+			}
 		}
 		return index;
 	}
