@@ -1,8 +1,6 @@
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Some utility methods for Strings.
+ * @author Pittayoot R.R.Ratanakul
  */
 public class StringUtil {
 	/**
@@ -13,9 +11,13 @@ public class StringUtil {
 	 */
 	public static int indexOf(String arg, String[] array) {
 		int index = -1;
-		for(int k=0; k<array.length; k++) {
-			if (array[k].equals(arg)) return k;
+		int arraylen = array.length;
+		for (int k = 0; k < arraylen; k++) {
+			if (array[k].equals(arg)) {
+				index = k;
+				break;
+			}
 		}
-		return -1;
+		return index;
 	}
 }
