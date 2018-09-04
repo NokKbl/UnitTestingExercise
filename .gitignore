@@ -3,8 +3,9 @@ bin/
 build/
 out/
 # eclipse junk
+.classpath
 .settings
-.project/
+.project
 # intellij junk
 .idea/
 *.iml

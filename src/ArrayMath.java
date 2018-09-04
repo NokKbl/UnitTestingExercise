@@ -1,8 +1,9 @@
 /**
- * Some linear algebra methods, for testing.
+ * ArrayMath class for computing some linear algebra methods,
+ * such as dot product of two vectors.
  * 
  * @author Jim
- *
+ * @author Kunyaruk Katebunlu
  */
 public class ArrayMath {
 
@@ -16,12 +17,16 @@ public class ArrayMath {
 	 * @throws IllegalArgumentException if x and y are not arrays of the same size
 	 */
 	public static double dotProduct(double[] x, double[] y) {
-		if (x.length != y.length) throw new IllegalArgumentException("Vector lengths must be same");
-		int size = x.length;
+		int sizeX = x.length;
+		int sizeY = y.length;
 		double product = 0.0;
-		for (int k = 0; k < size; k++) {
+		
+		if (sizeX != sizeY) throw new IllegalArgumentException("Vector lengths must be same");
+		
+		for (int k = 0; k < sizeX; k++) {
 			product += x[k]*y[k];
 		}
+		
 		return product;
 	}
 	
